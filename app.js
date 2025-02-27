@@ -26,27 +26,31 @@ async function getChefBirthday(id) {
 
     let recipe;
     try {
-        recipe = await fetchUrl(`https://dummyjson.com/recipes/${id}`);
+        recipe = await fetchUrl(`https://dummyjson.com/recipesAasd/${id}`);
 
     } catch (error) {
-        throw new Error(`Impossible get recipe with id ${id}`)
+        // throw new Error(`Impossible get recipe with id ${id}`)
+        console.error(error)
     }
 
-    if (recipe.message) {
-        throw new Error(recipe.message)
+    if (recipe && recipe.message) {
+        // throw new Error(recipe.message)
+        console.error(recipe.message)
     }
 
 
     let user;
     try {
-        user = await fetchUrl(`https://dummyjson.com/users/${recipe.userId}`);
+        user = await fetchUrl(`https://dummyjson.com/users/${recipe ? recipe.userId : 'unknown'}`);
 
     } catch (error) {
-        throw new Error(`Impossible get user with id ${user.id}`)
+        // throw new Error(`Impossible get user with id ${user.id}`)
+        console.error(error)
     }
 
-    if (user.message) {
-        throw new Error(user.message)
+    if (user && user.message) {
+        // throw new Error(user.message)
+        console.error(user.message)
     }
 
 
